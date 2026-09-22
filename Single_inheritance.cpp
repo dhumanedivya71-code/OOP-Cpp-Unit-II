@@ -1,36 +1,43 @@
 #include <iostream>
 #include <string>
-#include <utility>
+using namespace std;
 
 class Person {
 protected:
-    std::string name;
+    string name;
+    int age;
 
 public:
-    explicit Person(std::string personName) : name(std::move(personName)) {}
+    Person(string n, int a) {
+        name = n;
+        age = a;
+    }
 
-    void displayName() const {
-        std::cout << "Name: " << name << '\n';
+    void showPerson() {
+        cout << "Name: " << name << endl;
+        cout << "Age: " << age << endl;
     }
 };
 
-class Student : public Person {
+class Employee : public Person {
 private:
-    int rollNumber;
+    int employeeId;
 
 public:
-    Student(std::string studentName, int roll)
-        : Person(std::move(studentName)), rollNumber(roll) {}
+    Employee(string n, int a, int id) : Person(n, a) {
+        employeeId = id;
+    }
 
-    void displayStudent() const {
-        displayName();
-        std::cout << "Roll Number: " << rollNumber << '\n';
+    void showEmployee() {
+        showPerson();
+        cout << "Employee ID: " << employeeId << endl;
     }
 };
 
 int main() {
-    Student student("Amit", 101);
-    student.displayStudent();
+    Employee e("Rahul", 21, 105);
+
+    e.showEmployee();
 
     return 0;
 }
