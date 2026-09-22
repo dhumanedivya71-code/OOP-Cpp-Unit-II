@@ -1,34 +1,36 @@
 #include <iostream>
 #include <string>
-#include <utility>
+using namespace std;
 
-class Employee {
+class Department {
 protected:
-    std::string name;
+    string departmentName;
 
 public:
-    explicit Employee(std::string employeeName)
-        : name(std::move(employeeName)) {}
+    Department(string d) {
+        departmentName = d;
+    }
 };
 
-class Developer : public Employee {
+class Teacher : public Department {
 private:
-    std::string language;
+    string subject;
 
 public:
-    Developer(std::string employeeName, std::string programmingLanguage)
-        : Employee(std::move(employeeName)),
-          language(std::move(programmingLanguage)) {}
+    Teacher(string d, string s) : Department(d) {
+        subject = s;
+    }
 
-    void display() const {
-        std::cout << "Developer: " << name << '\n';
-        std::cout << "Language: " << language << '\n';
+    void display() {
+        cout << "Department: " << departmentName << endl;
+        cout << "Subject: " << subject << endl;
     }
 };
 
 int main() {
-    Developer developer("Neha", "C++");
-    developer.display();
+    Teacher t("Computer Engineering", "C++");
+
+    t.display();
 
     return 0;
 }
