@@ -1,30 +1,29 @@
 #include <iostream>
+using namespace std;
 
-class Base {
+class College {
 public:
-    void show() const {
-        std::cout << "Base public function\n";
+    void collegeInfo() {
+        cout << "This is a college." << endl;
     }
 };
 
-class PublicDerived : public Base {
+class Student : public College {
 };
 
-class PrivateDerived : private Base {
+class Teacher : private College {
 public:
-    void callBaseShow() const {
-        show();
+    void showInfo() {
+        collegeInfo();
     }
 };
 
 int main() {
-    PublicDerived publicObject;
-    publicObject.show();
+    Student s;
+    s.collegeInfo();
 
-    PrivateDerived privateObject;
-    privateObject.callBaseShow();
-
-    // privateObject.show(); // Error
+    Teacher t;
+    t.showInfo();
 
     return 0;
 }
